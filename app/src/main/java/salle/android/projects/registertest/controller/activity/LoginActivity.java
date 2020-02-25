@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
 
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
         btnLogin = (Button) findViewById(R.id.login_btn_action);
