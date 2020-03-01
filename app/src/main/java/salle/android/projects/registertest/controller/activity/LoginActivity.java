@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
 
     @Override
     public void onLoginFailure(Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Login failed " + throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override

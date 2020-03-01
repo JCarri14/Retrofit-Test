@@ -70,7 +70,11 @@ public class UserManager {
                     userCallback.onLoginSuccess(userToken);
                 } else {
                     Log.d(TAG, "Error: " + code);
-                    userCallback.onLoginFailure(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                    try {
+                        userCallback.onLoginFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -96,7 +100,11 @@ public class UserManager {
                     userCallback.onUserInfoReceived(response.body());
                 } else {
                     Log.d(TAG, "Error NOT SUCCESSFUL: " + response.toString());
-                    userCallback.onFailure(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                    try {
+                        userCallback.onFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
