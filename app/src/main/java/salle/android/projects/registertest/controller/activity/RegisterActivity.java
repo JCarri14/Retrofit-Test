@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity
     public void onRegisterFailure(Throwable throwable) {
         Session.getInstance(getApplicationContext())
                 .setUserRegister(null);
+        Toast.makeText(getApplicationContext(), "Register failed " + throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override

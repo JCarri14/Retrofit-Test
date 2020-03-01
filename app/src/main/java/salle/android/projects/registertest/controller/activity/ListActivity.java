@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
 
     @Override
     public void onNoTracks(Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Call failed!", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Call failed! " + throwable.getMessage(), Toast.LENGTH_LONG).show();
 
     }
 
@@ -68,7 +68,7 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
 
     @Override
     public void onFailure(Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Failure" + throwable.getMessage(), Toast.LENGTH_LONG).show();
 
     }
 }

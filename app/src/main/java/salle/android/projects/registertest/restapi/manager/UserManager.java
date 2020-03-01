@@ -3,6 +3,7 @@ package salle.android.projects.registertest.restapi.manager;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +122,11 @@ public class UserManager {
                 if (response.isSuccessful()) {
                     userCallback.onRegisterSuccess();
                 } else {
-                    userCallback.onRegisterFailure(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                    try {
+                        userCallback.onRegisterFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
