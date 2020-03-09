@@ -12,7 +12,7 @@
     <string name="action_login">Iniciar sesión</string>
     <string name="action_logout">Cerrar sesión</string>
     <string name="action_register">Registrarse</string>
-    <string name="action_advance_list">Mostrat Tracks (avanzado)</string>
+    <string name="action_advance_list">Mostrar Tracks (avanzado)</string>
     <string name="action_list">Mostrar Tracks</string>
 
     <!-- INFO STATE -->

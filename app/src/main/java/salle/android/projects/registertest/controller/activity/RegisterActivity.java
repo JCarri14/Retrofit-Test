@@ -81,8 +81,7 @@ public class RegisterActivity extends AppCompatActivity
     public void onRegisterFailure(Throwable throwable) {
         Session.getInstance(getApplicationContext())
                 .setUserRegister(null);
-        Toast.makeText(getApplicationContext(), "Register failed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getApplicationContext(), "Register failed " + throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
