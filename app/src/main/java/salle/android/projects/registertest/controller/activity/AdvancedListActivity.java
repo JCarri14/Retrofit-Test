@@ -1,6 +1,7 @@
 package salle.android.projects.registertest.controller.activity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,12 +13,16 @@ import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
+import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
+import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 import salle.android.projects.registertest.utils.Session;
 
-public class AdvancedListActivity extends AppCompatActivity implements TrackCallback {
+public class AdvancedListActivity extends AppCompatActivity
+        implements TrackCallback, PlaylistCallback {
 
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
@@ -49,6 +54,13 @@ public class AdvancedListActivity extends AppCompatActivity implements TrackCall
         mTracks = (ArrayList) tracks;
         TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
         mRecyclerView.setAdapter(adapter);
+
+        Playlist playlist = new Playlist();
+        playlist.setName("PlaylistTestGI-3");
+        playlist.setPublicAccessible(true);
+        PlaylistManager manager = new PlaylistManager(this);
+        manager.createPlaylist(playlist, this);
+
     }
 
     @Override
@@ -68,6 +80,16 @@ public class AdvancedListActivity extends AppCompatActivity implements TrackCall
 
     @Override
     public void onFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onPlaylistCreated(Playlist playlist) {
+        Toast.makeText(this, "PlaylistCallback here!\n Playlist name:" + playlist.getName(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPlaylistFailure(Throwable throwable) {
 
     }
 }
